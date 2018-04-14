@@ -1,0 +1,34 @@
+.wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+}
+
+.footer {
+  height: 30px;
+  padding: 10px;
+}
+
+.left {
+  flex: 1 10%;
+  background: rgba(95, 158, 160, 0.5);
+}
+
+.content {
+  background: lightgray;
+  flex: 1 90%;
+
+}
+
+.fill-remain-space {
+  flex: 1 1 auto;
+}
+
+.sidebar-item {
+  text-align: center;
+}

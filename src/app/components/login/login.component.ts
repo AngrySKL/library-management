@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   login() {
     const username = this.formModel.get('username').value;
     const password = this.formModel.get('password').value;
+
     this.loginSvr.login(username, password)
     .subscribe(res => {
       if (res.code === 200) {
