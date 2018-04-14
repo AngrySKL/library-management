@@ -4,4 +4,27 @@
   bottom: 1rem;
   left: 1rem;
   right: 1rem;
+  overflow: auto;
+}
+
+.book-toolbar {
+  display: flex;
+}
+
+.book-toolbar .add {
+  flex: 1 1 30%;
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+
+.book-toolbar .fill-remain-space {
+  flex: 1 1 30%;
+}
+
+.book-toolbar .search {
+  flex: 1 1 40%;
+}
+
+.book-toolbar .search .full-width{
+  width: 100%;
 }

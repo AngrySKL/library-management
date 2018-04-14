@@ -4,4 +4,5 @@
   bottom: 1rem;
   left: 1rem;
   right: 1rem;
+  overflow: auto;
 }

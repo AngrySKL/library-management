@@ -12,6 +12,8 @@ import { LoginService } from './shared/services/login/login.service';
 import { HomeComponent } from './components/home/home.component';
 import { BookComponent } from './components/book/book.component';
 import { UserComponent } from './components/user/user.component';
+import { BookDetailComponent } from './components/book/book-detail/book-detail.component';
+import { BookListComponent } from './components/book/book-list/book-list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { UserComponent } from './components/user/user.component';
     LoginComponent,
     HomeComponent,
     BookComponent,
-    UserComponent
+    UserComponent,
+    BookDetailComponent,
+    BookListComponent
   ],
   imports: [
     BrowserModule,

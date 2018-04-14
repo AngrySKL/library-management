@@ -7,9 +7,9 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="logout()">
               <mat-icon>power_settings_new</mat-icon>
-              <span>Logout</span>
+              <span>Log Out</span>
             </button>
       </mat-menu>
     </mat-toolbar-row>
