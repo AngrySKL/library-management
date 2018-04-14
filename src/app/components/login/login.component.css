@@ -1,0 +1,14 @@
+.login-card {
+  width: 350px;
+  background: rgba(128, 127, 127, 0.24);
+  margin: 10% auto;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-button {
+  margin-top: 1.25em;
+}
