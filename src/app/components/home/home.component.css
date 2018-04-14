@@ -16,13 +16,14 @@
 
 .left {
   flex: 1 10%;
-  background: rgba(95, 158, 160, 0.5);
+  background: teal;
 }
 
 .content {
   background: lightgray;
   flex: 1 90%;
-
+  padding: 1rem;
+  position: relative;
 }
 
 .fill-remain-space {
@@ -31,4 +32,8 @@
 
 .sidebar-item {
   text-align: center;
+}
+
+.active-link {
+  color: #B2DFDB;
 }
