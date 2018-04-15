@@ -1,5 +1,10 @@
 <div class="wrapper">
   <mat-toolbar class="indigo-background">
+    <!-- 
+      mat-toolbar-row is a flex box, but it has 4 children.
+      and justify-content: space-between use all the 4 children to calculate the between space for each child,
+      even the child has 0 width.
+     -->
     <mat-toolbar-row>
       <span>Elekta Library Management System</span>
       <span class="fill-remain-space"></span>

@@ -9,20 +9,17 @@
 
 .book-toolbar {
   display: flex;
+  justify-content: space-between;
 }
 
 .book-toolbar .add {
-  flex: 1 1 40%;
+  flex: 0 1 40%;
   margin-top: 1.25em;
   margin-bottom: 1.25em;
 }
 
-.book-toolbar .fill-remain-space {
-  flex: 1 1 20%;
-}
-
 .book-toolbar .search {
-  flex: 1 1 40%;
+  flex: 0 1 40%;
 }
 
 .book-toolbar .search .full-width{
