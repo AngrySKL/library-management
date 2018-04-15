@@ -16,7 +16,7 @@
 
 .left {
   flex: 1 10%;
-  background: teal;
+  background: #303F9F;
 }
 
 .content {
@@ -35,5 +35,14 @@
 }
 
 .active-link {
-  color: #B2DFDB;
+  font-weight: bold;
+}
+
+.indigo-background {
+  background: #1A237E;
+  color: white;
+}
+
+.left a {
+  color: white;
 }
