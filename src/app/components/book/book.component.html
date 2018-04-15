@@ -1,12 +1,12 @@
 <mat-card class="book-card">
   <div class="book-toolbar">
-      <button mat-raised-button color="primary" class="add">
+      <button mat-raised-button color="accent" class="add">
           <mat-icon>add_circle_outline</mat-icon>Add Book
       </button>
       <span class="fill-remain-space"></span>
       <div class="search">
         <mat-form-field class="full-width">
-            <input matInput placeholder="Search">
+            <input matInput placeholder="Search" [formControl]="searchInput">
         </mat-form-field>
       </div>
   </div>
