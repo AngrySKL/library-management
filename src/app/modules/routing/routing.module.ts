@@ -15,7 +15,8 @@ const routes: Routes = [
       { path: 'book', component: BookComponent,
     children: [
       { path: '', component: BookListComponent },
-      { path: 'add', component: BookDetailComponent }
+      { path: 'add', component: BookDetailComponent },
+      { path: 'detail', component: BookDetailComponent }
     ] },
       { path: 'user', component: UserComponent }
     ]},

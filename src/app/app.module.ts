@@ -14,6 +14,7 @@ import { BookComponent } from './components/book/book.component';
 import { UserComponent } from './components/user/user.component';
 import { BookDetailComponent } from './components/book/book-detail/book-detail.component';
 import { BookListComponent } from './components/book/book-list/book-list.component';
+import { BookService } from './shared/services/book/book.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { BookListComponent } from './components/book/book-list/book-list.compone
     MaterialModule
   ],
   providers: [
-    LoginService
+    LoginService,
+    BookService
   ],
   bootstrap: [AppComponent]
 })
