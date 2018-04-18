@@ -29,6 +29,14 @@
         <mat-cell *matCellDef="let book"> {{book.ISBN}} </mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="Operation">
+        <mat-header-cell *matHeaderCellDef> Operation </mat-header-cell>
+        <mat-cell *matCellDef="let book" class="operation-icon-color">
+          <a mat-icon-button [routerLink]="['detail', book.id]"><mat-icon>edit</mat-icon></a>
+          <a mat-icon-button (click)="confirmBeforeDelation(book.id)"><mat-icon>delete_forever</mat-icon></a>
+        </mat-cell>
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>

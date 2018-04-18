@@ -13,7 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { BookComponent } from './components/book/book.component';
 import { UserComponent } from './components/user/user.component';
 import { BookDetailComponent } from './components/book/book-detail/book-detail.component';
-import { BookListComponent } from './components/book/book-list/book-list.component';
+import { BookListComponent, DeleteConfirmDialog } from './components/book/book-list/book-list.component';
 import { BookService } from './shared/services/book/book.service';
 
 @NgModule({
@@ -24,7 +24,11 @@ import { BookService } from './shared/services/book/book.service';
     BookComponent,
     UserComponent,
     BookDetailComponent,
-    BookListComponent
+    BookListComponent,
+    DeleteConfirmDialog
+  ],
+  entryComponents: [
+    DeleteConfirmDialog
   ],
   imports: [
     BrowserModule,

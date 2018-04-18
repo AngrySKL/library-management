@@ -6,3 +6,7 @@
 .mat-table {
   overflow: auto;
 }
+
+.operation-icon-color {
+  color:#004D40;
+}

@@ -1,7 +1,7 @@
 import { MatCardModule, MatInputModule, MatButtonModule,
   MatToolbarModule, MatIconModule, MatMenuModule,
   MatSidenavModule, MatListModule, MatTableModule,
-  MatPaginatorModule, MatSortModule } from '@angular/material';
+  MatPaginatorModule, MatSortModule, MatDialogModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 
 @NgModule({
@@ -9,13 +9,13 @@ import { NgModule } from '@angular/core';
     MatCardModule, MatInputModule, MatButtonModule,
     MatToolbarModule, MatIconModule, MatMenuModule,
     MatSidenavModule, MatListModule, MatTableModule,
-    MatPaginatorModule, MatSortModule
+    MatPaginatorModule, MatSortModule, MatDialogModule
   ],
   exports: [
     MatCardModule, MatInputModule, MatButtonModule,
     MatToolbarModule, MatIconModule, MatMenuModule,
     MatSidenavModule, MatListModule, MatTableModule,
-    MatPaginatorModule, MatSortModule
+    MatPaginatorModule, MatSortModule, MatDialogModule
   ],
   declarations: [
   ]
