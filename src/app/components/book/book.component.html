@@ -5,7 +5,7 @@
       </a>
       <div class="search">
         <mat-form-field class="full-width">
-            <input matInput placeholder="Search" [formControl]="searchInput">
+            <input matInput placeholder="Press Enter To Search" #searchInput (keyup.enter)="onEnter(searchInput.value)">
         </mat-form-field>
       </div>
   </div>

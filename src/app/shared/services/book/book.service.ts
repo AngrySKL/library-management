@@ -21,8 +21,8 @@ export class BookService {
     this.tmpBookResponse.totalCount = 30;
   }
 
-  getBooks(): BookResponse {
-    return this.tmpBookResponse;
+  getBooks(): Observable<BookResponse> {
+    return Observable.of(this.tmpBookResponse);
   }
 }
 

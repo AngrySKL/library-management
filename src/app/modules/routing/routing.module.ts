@@ -9,17 +9,18 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: 'home', redirectTo: '/home/book', pathMatch: 'full'},
-  { path: 'home', component: HomeComponent,
+  { path: 'home',
+    component: HomeComponent,
     children: [
-      { path: '', component: BookComponent },
-      { path: 'book', component: BookComponent,
-    children: [
-      { path: '', component: BookListComponent },
-      { path: 'add', component: BookDetailComponent },
-      { path: 'detail/:id', component: BookDetailComponent }
-    ] },
-      { path: 'user', component: UserComponent }
-    ]},
+      { path: 'book',
+        component: BookComponent,
+        children: [
+          { path: '', component: BookListComponent },
+          { path: 'add', component: BookDetailComponent },
+          { path: 'detail/:id', component: BookDetailComponent }]
+      },
+      { path: 'user', component: UserComponent }]
+  },
   { path: 'login', component: LoginComponent },
   { path: '', component: LoginComponent }
 ];
