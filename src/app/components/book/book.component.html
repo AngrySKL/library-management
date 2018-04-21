@@ -1,8 +1,8 @@
 <mat-card class="book-card">
   <div class="book-toolbar">
-      <button mat-raised-button color="accent" class="add">
+      <a mat-raised-button color="accent" class="add" [routerLink]="['add']">
           <mat-icon>add_circle_outline</mat-icon>Add Book
-      </button>
+      </a>
       <div class="search">
         <mat-form-field class="full-width">
             <input matInput placeholder="Search" [formControl]="searchInput">

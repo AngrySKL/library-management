@@ -1,10 +1,11 @@
 import { Book } from './book.service';
 import { Observable } from 'rxjs/Observable';
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 
 @Injectable()
 export class BookService {
 
+  @Output() searchBook: EventEmitter<string> = new EventEmitter();
   tmpBookResponse: BookResponse;
 
   constructor() {
