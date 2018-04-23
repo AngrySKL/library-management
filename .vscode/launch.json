@@ -9,7 +9,7 @@
       "request": "launch",
       "name": "Launch Application",
       "url": "http://localhost:4200",
-      "webRoot": "${workspaceFolder}",
+      "webRoot": "${workspaceRoot}",
       "sourceMaps": true,
       "sourceMapPathOverrides": { "webpack:/*": "${webRoot}/*" }
     }
