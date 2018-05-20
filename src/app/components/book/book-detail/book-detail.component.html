@@ -1,3 +1,19 @@
-<p>
-  {{ message }}
-</p>
+<div class="detail-container">
+  <label class="detail-action"> * You're currently {{action}} a book. </label>
+  <form class="detail-form" (submit)="save()" [formGroup]="formModel">
+      <mat-form-field>
+        <input matInput placeholder="Title" formControlName="title" required >
+      </mat-form-field>
+      <mat-form-field>
+          <input matInput placeholder="Author" formControlName="author" required>
+      </mat-form-field>
+      <mat-form-field>
+          <input matInput placeholder="Publisher" formControlName="publisher" required>
+      </mat-form-field>
+      <mat-form-field>
+          <input matInput placeholder="ISBN" formControlName="ISBN" required>
+      </mat-form-field>
+    
+      <button mat-raised-button  type="submit" class="save-button">Save</button>
+    </form>
+</div>

@@ -1,0 +1,25 @@
+.detail-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-form {
+  display: flex;
+  flex-direction: column;
+  padding-left: 4em;
+  padding-right: 4em;
+}
+
+.detail-action {
+  padding-top: 2em;
+  padding-bottom: 2em;
+  padding-left: 4em;
+  padding-right: 4em;
+  font-weight: bold;
+  color: red;
+}
+
+.save-button {
+  color: white;
+  background: #00695C;
+}
