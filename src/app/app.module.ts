@@ -12,9 +12,10 @@ import { LoginService } from './shared/services/login/login.service';
 import { HomeComponent } from './components/home/home.component';
 import { BookComponent } from './components/book/book.component';
 import { UserComponent } from './components/user/user.component';
-import { BookDetailComponent } from './components/book/book-detail/book-detail.component';
+import { BookDetailComponent, MessageDialog } from './components/book/book-detail/book-detail.component';
 import { BookListComponent, DeleteConfirmDialog } from './components/book/book-list/book-list.component';
 import { BookService } from './shared/services/book/book.service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -25,17 +26,20 @@ import { BookService } from './shared/services/book/book.service';
     UserComponent,
     BookDetailComponent,
     BookListComponent,
-    DeleteConfirmDialog
+    DeleteConfirmDialog,
+    MessageDialog
   ],
   entryComponents: [
-    DeleteConfirmDialog
+    DeleteConfirmDialog,
+    MessageDialog
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     RoutingModule,
-    MaterialModule
+    MaterialModule,
+    HttpModule
   ],
   providers: [
     LoginService,

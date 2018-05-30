@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { BookService, Book } from './../../../shared/services/book/book.service';
 import { Component, OnInit, ViewChild, AfterViewInit, Inject, OnDestroy } from '@angular/core';
@@ -23,20 +23,34 @@ export class BookListComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private bookSvc: BookService, private dialog: MatDialog, private routeInfo: ActivatedRoute) {
+  constructor(private bookSvc: BookService,
+              private dialog: MatDialog,
+              private routeInfo: ActivatedRoute,
+              private router: Router) {
     this.searchTerm = this.routeInfo.snapshot.params['searchTerm'];
     this.alive = true;
   }
 
-  confirmBeforeDelation(id: number) {
+  getBooks() {
+    this.bookSvc.getBooks().takeWhile(() => this.alive).subscribe(response => {
+      this.dataSource.data = response.books;
+      this.applyFliter(this.searchTerm);
+    });
+  }
+
+  confirmBeforeDelation(id: number, title: string) {
     const dialogRef = this.dialog.open(DeleteConfirmDialog, {
       height: '200px',
-      data: { bookTitle: id }
+      data: { bookTitle: title }
     });
     dialogRef.afterClosed()
     .subscribe(result => {
       if (result) {
-        console.log(`you are trying to delete book ${id}`);
+        this.bookSvc.deleteBook(id).subscribe(res => {
+          if (res.code === 200) {
+            this.getBooks();
+          }
+        });
       }
     });
   }
@@ -47,15 +61,8 @@ export class BookListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit() {
-    this.bookSvc.getBooks()
-    .takeWhile(() => this.alive)
-    .subscribe(response => {
-      this.dataSource.data = response.books;
-      this.applyFliter(this.searchTerm);
-    });
-    this.bookSvc.searchBook
-    .takeWhile(() => this.alive)
-    .subscribe(searchTerm => {
+    this.getBooks();
+    this.bookSvc.searchBook.takeWhile(() => this.alive).subscribe(searchTerm => {
       this.applyFliter(searchTerm);
     });
   }
@@ -75,13 +82,13 @@ export class BookListComponent implements OnInit, OnDestroy, AfterViewInit {
     fliterValue = fliterValue.toLowerCase();
     this.dataSource.filter = fliterValue;
   }
-
 }
 
 @Component({
   selector: 'app-delete-confirm-dialog',
   templateUrl: 'delete-confirm-dialog.html',
 })
+// tslint:disable-next-line:component-class-suffix
 export class DeleteConfirmDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }
