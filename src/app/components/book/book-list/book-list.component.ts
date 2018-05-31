@@ -15,7 +15,7 @@ import 'rxjs/add/operator/takeWhile';
 })
 export class BookListComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  displayedColumns = ['id', 'title', 'author', 'publisher', 'ISBN', 'Operation'];
+  displayedColumns = ['id', 'title', 'author', 'publisher', 'ISBN', 'borrowerId', 'Operation'];
   dataSource = new MatTableDataSource<Book>();
   searchTerm: string;
   alive: boolean;
@@ -39,14 +39,31 @@ export class BookListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   confirmBeforeDelation(id: number, title: string) {
-    const dialogRef = this.dialog.open(DeleteConfirmDialog, {
+    const dialogRef = this.dialog.open(ActionConfirmDialog, {
       height: '200px',
-      data: { bookTitle: title }
+      data: { message: `Do you really want to delete ${title} ?` }
     });
     dialogRef.afterClosed()
     .subscribe(result => {
       if (result) {
         this.bookSvc.deleteBook(id).subscribe(res => {
+          if (res.code === 200) {
+            this.getBooks();
+          }
+        });
+      }
+    });
+  }
+
+  confirmBeforeReturn(id: number, title: string) {
+    const dialogRef = this.dialog.open(ActionConfirmDialog, {
+      height: '200px',
+      data: { message: `Do you really want to return ${title} ?` }
+    });
+    dialogRef.afterClosed()
+    .subscribe(result => {
+      if (result) {
+        this.bookSvc.returnBook(id).subscribe(res => {
           if (res.code === 200) {
             this.getBooks();
           }
@@ -85,10 +102,10 @@ export class BookListComponent implements OnInit, OnDestroy, AfterViewInit {
 }
 
 @Component({
-  selector: 'app-delete-confirm-dialog',
-  templateUrl: 'delete-confirm-dialog.html',
+  selector: 'app-action-confirm-dialog',
+  templateUrl: 'action-confirm-dialog.html',
 })
 // tslint:disable-next-line:component-class-suffix
-export class DeleteConfirmDialog {
+export class ActionConfirmDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }

@@ -13,7 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { BookComponent } from './components/book/book.component';
 import { UserComponent } from './components/user/user.component';
 import { BookDetailComponent, MessageDialog } from './components/book/book-detail/book-detail.component';
-import { BookListComponent, DeleteConfirmDialog } from './components/book/book-list/book-list.component';
+import { BookListComponent, ActionConfirmDialog } from './components/book/book-list/book-list.component';
 import { BookService } from './shared/services/book/book.service';
 import { HttpModule } from '@angular/http';
 
@@ -26,11 +26,11 @@ import { HttpModule } from '@angular/http';
     UserComponent,
     BookDetailComponent,
     BookListComponent,
-    DeleteConfirmDialog,
+    ActionConfirmDialog,
     MessageDialog
   ],
   entryComponents: [
-    DeleteConfirmDialog,
+    ActionConfirmDialog,
     MessageDialog
   ],
   imports: [

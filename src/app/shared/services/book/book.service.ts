@@ -47,6 +47,12 @@ export class BookService {
     .post('/api/books/delete', { id: id })
     .map(res => res.json());
   }
+
+  returnBook(id: number): Observable<any> {
+    return this.http
+    .post('/api/books/return', { id: id })
+    .map(res => res.json());
+  }
 }
 
 export interface Book {
