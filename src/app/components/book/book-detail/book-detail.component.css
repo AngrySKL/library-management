@@ -23,3 +23,13 @@
   color: white;
   background: #00695C;
 }
+
+.upload-button {
+  color: white;
+  background: #00695C;
+}
+
+.upload-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

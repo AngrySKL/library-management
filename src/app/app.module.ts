@@ -1,3 +1,5 @@
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -15,7 +17,10 @@ import { UserComponent } from './components/user/user.component';
 import { BookDetailComponent, MessageDialog } from './components/book/book-detail/book-detail.component';
 import { BookListComponent, ActionConfirmDialog } from './components/book/book-list/book-list.component';
 import { BookService } from './shared/services/book/book.service';
-import { HttpModule } from '@angular/http';
+import { MaterialFileUploadComponent } from './components/fileupload/material-file-upload/material-file-upload.component';
+import { MaterialFileUploadQueueComponent } from './components/fileupload/material-file-upload-queue/material-file-upload-queue.component';
+import { BytesPipe } from './shared/pipe/bytes/bytes.pipe';
+import { FileUploadInputForDirective } from './components/fileupload/file-upload-input-for.directive';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,11 @@ import { HttpModule } from '@angular/http';
     BookDetailComponent,
     BookListComponent,
     ActionConfirmDialog,
-    MessageDialog
+    MessageDialog,
+    MaterialFileUploadComponent,
+    MaterialFileUploadQueueComponent,
+    BytesPipe,
+    FileUploadInputForDirective
   ],
   entryComponents: [
     ActionConfirmDialog,
@@ -39,7 +48,8 @@ import { HttpModule } from '@angular/http';
     ReactiveFormsModule,
     RoutingModule,
     MaterialModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
   providers: [
     LoginService,

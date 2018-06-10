@@ -1,0 +1,19 @@
+.file-info {
+  font-size: .85rem;
+}
+
+.file-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 10px;
+}
+
+a.disabled {
+  pointer-events: none;
+}
+
+.action {
+  cursor: pointer;
+  outline: none;
+}

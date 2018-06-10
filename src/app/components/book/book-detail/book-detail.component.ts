@@ -1,9 +1,8 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BookService } from './../../../shared/services/book/book.service';
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { identifierModuleUrl } from '@angular/compiler';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
 import 'rxjs/add/operator/takeWhile';
 
@@ -17,6 +16,8 @@ export class BookDetailComponent implements OnInit, OnDestroy {
   action: string;
   formModel: FormGroup;
   bookId: number;
+
+  @ViewChild('file') file: ElementRef;
 
   constructor(private routeInfo: ActivatedRoute,
               private router: Router,
@@ -53,6 +54,10 @@ export class BookDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.alive = false;
+  }
+
+  openFileDialog() {
+    this.file.nativeElement.click();
   }
 
   save() {
