@@ -19,7 +19,7 @@
 
       <div class="upload-container">
         <app-material-file-upload-queue #fileUploadQueue [fileAlias]="'file'" [httpUrl]="'/api/books/upload'">
-            <app-material-file-upload [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index">
+            <app-material-file-upload [file]="file" [id]="bookId" *ngFor="let file of fileUploadQueue.files; let i = index">
             </app-material-file-upload>
         </app-material-file-upload-queue>
       </div>

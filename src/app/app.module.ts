@@ -1,4 +1,3 @@
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -48,7 +47,6 @@ import { FileUploadInputForDirective } from './components/fileupload/file-upload
     ReactiveFormsModule,
     RoutingModule,
     MaterialModule,
-    HttpModule,
     HttpClientModule
   ],
   providers: [

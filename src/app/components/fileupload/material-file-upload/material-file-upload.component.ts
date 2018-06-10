@@ -21,7 +21,7 @@ export class MaterialFileUploadComponent implements OnDestroy {
   httpUrl = 'http://localhost:8000';
 
   @Input()
-  httpRequestHeaders: HttpHeaders | { [header: string]: string | string[]; } = new HttpHeaders().set('Content-Type', 'multipart/form-data');
+  httpRequestHeaders: HttpHeaders | { [header: string]: string | string[]; } = new HttpHeaders();
 
   @Input()
   httpRequestParams: HttpParams | { [param: string]: string | string[]; } = new HttpParams();
@@ -71,6 +71,7 @@ export class MaterialFileUploadComponent implements OnDestroy {
     this.isUploading = true;
     const formData = new FormData();
     formData.set(this.fileAlias, this._file, this._file.name);
+    formData.set('bookId', this._id ? this._id.toString() : null);
     this._fileUploadSubscription = this.http.post(this.httpUrl, formData, {
       headers: this.httpRequestHeaders,
       observe: 'events',
