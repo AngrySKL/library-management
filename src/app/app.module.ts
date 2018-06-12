@@ -1,3 +1,4 @@
+import { FilePreviewOverlayComponent } from './components/filepreview/file-preview-overlay/file-preview-overlay.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +21,9 @@ import { MaterialFileUploadComponent } from './components/fileupload/material-fi
 import { MaterialFileUploadQueueComponent } from './components/fileupload/material-file-upload-queue/material-file-upload-queue.component';
 import { BytesPipe } from './shared/pipe/bytes/bytes.pipe';
 import { FileUploadInputForDirective } from './components/fileupload/file-upload-input-for.directive';
+// tslint:disable-next-line:max-line-length
+import { FilePreviewOverlayToolbarComponent } from './components/filepreview/file-preview-overlay-toolbar/file-preview-overlay-toolbar.component';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -35,7 +39,9 @@ import { FileUploadInputForDirective } from './components/fileupload/file-upload
     MaterialFileUploadComponent,
     MaterialFileUploadQueueComponent,
     BytesPipe,
-    FileUploadInputForDirective
+    FileUploadInputForDirective,
+    FilePreviewOverlayComponent,
+    FilePreviewOverlayToolbarComponent
   ],
   entryComponents: [
     ActionConfirmDialog,
@@ -47,7 +53,9 @@ import { FileUploadInputForDirective } from './components/fileupload/file-upload
     ReactiveFormsModule,
     RoutingModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    OverlayModule,
+    BrowserAnimationsModule
   ],
   providers: [
     LoginService,

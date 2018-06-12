@@ -1,0 +1,14 @@
+<app-file-preview-overlay-toolbar>
+  <mat-icon>description</mat-icon>{{ image.name }}
+</app-file-preview-overlay-toolbar>
+
+<div class="overlay-content"
+  [@slideContent]="animationState" 
+  (@slideContent.start)="onAnimationStart($event)"
+  (@slideContent.done)="onAnimationDone($event)">
+  <div class="spinner-wrapper" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <img [src]="image.url" (load)="onLoad($event)" [@fade]="loading ? 'fadeOut' : 'fadeIn'">
+</div>
