@@ -24,6 +24,7 @@ import { FileUploadInputForDirective } from './components/fileupload/file-upload
 // tslint:disable-next-line:max-line-length
 import { FilePreviewOverlayToolbarComponent } from './components/filepreview/file-preview-overlay-toolbar/file-preview-overlay-toolbar.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { FilePreviewOverlayService } from './shared/services/filepreview/file-preview-overlay.service';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { OverlayModule } from '@angular/cdk/overlay';
   ],
   providers: [
     LoginService,
-    BookService
+    BookService,
+    FilePreviewOverlayService
   ],
   bootstrap: [AppComponent]
 })
