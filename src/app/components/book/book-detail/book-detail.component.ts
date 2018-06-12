@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
 import 'rxjs/add/operator/takeWhile';
+import { MaterialFileUploadQueueComponent } from '../../fileupload/material-file-upload-queue/material-file-upload-queue.component';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-book-detail',
@@ -18,6 +20,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
   bookId: number;
 
   @ViewChild('file') file: ElementRef;
+  @ViewChild('fileUploadQueue') uploadQueue: MaterialFileUploadQueueComponent;
 
   constructor(private routeInfo: ActivatedRoute,
               private router: Router,
@@ -38,7 +41,6 @@ export class BookDetailComponent implements OnInit, OnDestroy {
       });
       this.action = 'EDITING';
     } else {
-
       this.action = 'ADDING';
     }
     this.bookId = bookId;
@@ -67,29 +69,33 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     const ISBN = this.formModel.get('ISBN').value;
 
     if (this.bookId) {
-      this.bookSvc.saveBook(this.bookId, title, author, publisher, ISBN).subscribe(res => {
-        if (res.code === 200) {
-          const dialogRef = this.dialog.open(MessageDialog, {
-            height: '180px',
-            data: { message: res.message }
-          });
+      this.bookSvc.saveBook(this.bookId, title, author, publisher, ISBN, this.uploadQueue.files[0]).subscribe(res => {
+          if (res.type === HttpEventType.Response) {
+            if (res.code === 200) {
+              const dialogRef = this.dialog.open(MessageDialog, {
+                height: '180px',
+                data: { message: res.message }
+              });
+          }
         }
       });
     } else {
-      this.bookSvc.addBook(title, author, publisher, ISBN).subscribe(res => {
-        if (res.code === 200) {
-          const dialogRef = this.dialog.open(MessageDialog, {
-            height: '180px',
-            data: { message: res.message }
-          });
-          dialogRef.afterClosed().subscribe(result => {
-            this.router.navigate(['home/book']);
-          });
-        } else {
-          const dialogRef = this.dialog.open(MessageDialog, {
-            height: '180px',
-            data: { message: res.message }
-          });
+      this.bookSvc.addBook(title, author, publisher, ISBN, this.uploadQueue.files[0]).subscribe(res => {
+        if (res.type === HttpEventType.Response) {
+          if (res.body.code === 200) {
+            const dialogRef = this.dialog.open(MessageDialog, {
+              height: '180px',
+              data: { message: res.body.message }
+            });
+            dialogRef.afterClosed().subscribe(result => {
+              this.router.navigate(['home/book']);
+            });
+          } else {
+            const dialogRef = this.dialog.open(MessageDialog, {
+              height: '180px',
+              data: { message: res.body.message }
+            });
+          }
         }
       });
     }

@@ -29,6 +29,11 @@
         <mat-cell *matCellDef="let book"> {{book.ISBN}} </mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="coverUrl">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> cover </mat-header-cell>
+          <mat-cell *matCellDef="let book"> {{book.coverUrl ? book.coverUrl : 'none'}} </mat-cell>
+        </ng-container>
+
       <ng-container matColumnDef="borrowerId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> BorrowerId </mat-header-cell>
         <mat-cell *matCellDef="let book"> {{book.borrowerId ? book.borrowerId : 'none'}} </mat-cell>

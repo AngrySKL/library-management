@@ -12,7 +12,7 @@ import { startWith } from 'rxjs/operators/startWith';
 })
 export class MaterialFileUploadQueueComponent implements OnDestroy, AfterViewInit {
 
-  public files: Array<any> = [];
+  public files: Array<File> = [];
 
   private _changeSubscription: Subscription | null;
   private _fileRemoveSubscription: Subscription | null;
@@ -60,7 +60,7 @@ export class MaterialFileUploadQueueComponent implements OnDestroy, AfterViewIni
     });
   }
 
-  public add(file: any) {
+  public add(file: File) {
     this.files.push(file);
   }
 

@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import 'rxjs/add/operator/map';
 
@@ -23,14 +23,36 @@ export class BookService {
     });
   }
 
-  saveBook(id: number, title: string, author: string, publisher: string, ISBN: string): Observable<any> {
+  saveBook(id: number, title: string, author: string, publisher: string, ISBN: string, cover: File): Observable<any> {
+    const formData = new FormData();
+    formData.set('title', title);
+    formData.set('author', author);
+    formData.set('publisher', publisher);
+    formData.set('ISBN', ISBN);
+    if (cover) { formData.set('cover', cover, cover.name); }
+
     return this.http
-    .post('/api/books/save', { id: id, title: title, author: author, publisher: publisher, ISBN: ISBN });
+    .post('/api/books/save', formData, {
+      observe: 'events',
+      reportProgress: true,
+      responseType: 'json'
+    });
   }
 
-  addBook(title: string, author: string, publisher: string, ISBN: string): Observable<any> {
+  addBook(title: string, author: string, publisher: string, ISBN: string, cover: File): Observable<any> {
+    const formData = new FormData();
+    formData.set('title', title);
+    formData.set('author', author);
+    formData.set('publisher', publisher);
+    formData.set('ISBN', ISBN);
+    if (cover) { formData.set('cover', cover, cover.name); }
+
     return this.http
-    .post('/api/books/add', { title: title, author: author, publisher: publisher, ISBN: ISBN });
+    .post('/api/books/add', formData, {
+      observe: 'events',
+      reportProgress: true,
+      responseType: 'json'
+    });
   }
 
   deleteBook(id: number): Observable<any> {

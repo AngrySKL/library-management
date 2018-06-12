@@ -14,7 +14,7 @@
           <input matInput placeholder="ISBN" formControlName="ISBN" required>
       </mat-form-field>
 
-      <input type="file" #file style="display: none" multiple [fileUploadInputFor]="fileUploadQueue" />
+      <input type="file" #file style="display: none" [fileUploadInputFor]="fileUploadQueue" />
       <button mat-raised-button type="button" class="upload-button" color="primary" (click)="openFileDialog()">Upload</button>
 
       <div class="upload-container">

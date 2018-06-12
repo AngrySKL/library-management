@@ -15,7 +15,7 @@ import 'rxjs/add/operator/takeWhile';
 })
 export class BookListComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  displayedColumns = ['id', 'title', 'author', 'publisher', 'ISBN', 'borrowerId', 'Operation'];
+  displayedColumns = ['id', 'title', 'author', 'publisher', 'ISBN', 'coverUrl', 'borrowerId', 'Operation'];
   dataSource = new MatTableDataSource<Book>();
   searchTerm: string;
   alive: boolean;

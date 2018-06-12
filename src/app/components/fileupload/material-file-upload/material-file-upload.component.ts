@@ -8,7 +8,7 @@ import { HttpHeaders, HttpParams, HttpClient, HttpEventType } from '@angular/com
   styleUrls: ['./material-file-upload.component.css']
 })
 export class MaterialFileUploadComponent implements OnDestroy {
-  private _file: any;
+  private _file: File;
   private _id: number;
   private _fileUploadSubscription: any;
 
@@ -30,10 +30,10 @@ export class MaterialFileUploadComponent implements OnDestroy {
   fileAlias = 'file';
 
   @Input()
-  get file(): any {
+  get file(): File {
     return this._file;
   }
-  set file(file: any) {
+  set file(file: File) {
     this._file = file;
     this.total  = this._file.size;
   }
