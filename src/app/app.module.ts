@@ -46,7 +46,8 @@ import { FilePreviewOverlayService } from './shared/services/filepreview/file-pr
   ],
   entryComponents: [
     ActionConfirmDialog,
-    MessageDialog
+    MessageDialog,
+    FilePreviewOverlayComponent
   ],
   imports: [
     BrowserModule,

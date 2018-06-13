@@ -1,7 +1,7 @@
 import { FilePreviewOverlayRef } from './../file-preview-overlay-ref';
-import { FILE_PREVIEW_DIALOG_DATA } from './../../token/file-preview-overlay.token';
 import { Component, OnInit, Inject, HostListener, EventEmitter } from '@angular/core';
 import { trigger, state, style, transition, animate, AnimationEvent, group, query } from '@angular/animations';
+import { FILE_PREVIEW_DIALOG_DATA } from '../../../shared/services/token/file-preview-overlay.token';
 
 const ESCAPE = 27;
 const ANIMATION_TIMINGS = '400ms cubic-bezier(0.25, 0.8, 0.25, 1)';

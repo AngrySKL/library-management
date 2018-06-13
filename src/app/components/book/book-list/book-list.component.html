@@ -31,8 +31,10 @@
 
       <ng-container matColumnDef="coverUrl">
           <mat-header-cell *matHeaderCellDef mat-sort-header> cover </mat-header-cell>
-          <mat-cell *matCellDef="let book"> {{book.coverUrl ? book.coverUrl : 'none'}} </mat-cell>
-        </ng-container>
+          <mat-cell *matCellDef="let book">
+            <a mat-icon-button (click)="showPreview(book.title, book.coverUrl)"><mat-icon mat-list-icon>visibility</mat-icon></a>
+          </mat-cell>
+      </ng-container>
 
       <ng-container matColumnDef="borrowerId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> BorrowerId </mat-header-cell>

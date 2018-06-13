@@ -7,6 +7,7 @@ import { MatPaginator, MatTableDataSource, MatSort, MatDialog, MAT_DIALOG_DATA }
 
 import * as _ from 'lodash';
 import 'rxjs/add/operator/takeWhile';
+import { FilePreviewOverlayService } from '../../../shared/services/filepreview/file-preview-overlay.service';
 
 @Component({
   selector: 'app-book-list',
@@ -26,7 +27,8 @@ export class BookListComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(private bookSvc: BookService,
               private dialog: MatDialog,
               private routeInfo: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private filePreviewSvc: FilePreviewOverlayService) {
     this.searchTerm = this.routeInfo.snapshot.params['searchTerm'];
     this.alive = true;
   }
@@ -98,6 +100,10 @@ export class BookListComponent implements OnInit, OnDestroy, AfterViewInit {
     fliterValue = fliterValue.trim();
     fliterValue = fliterValue.toLowerCase();
     this.dataSource.filter = fliterValue;
+  }
+
+  showPreview(bookName, bookCoverUrl) {
+    const dialogRef = this.filePreviewSvc.open({ image: { name: bookName, url: bookCoverUrl } });
   }
 }
 

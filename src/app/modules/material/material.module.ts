@@ -1,7 +1,7 @@
 import { MatCardModule, MatInputModule, MatButtonModule,
   MatToolbarModule, MatIconModule, MatMenuModule,
   MatSidenavModule, MatListModule, MatTableModule,
-  MatPaginatorModule, MatSortModule, MatDialogModule, MatProgressBarModule } from '@angular/material';
+  MatPaginatorModule, MatSortModule, MatDialogModule, MatProgressBarModule, MatProgressSpinnerModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 
 @NgModule({
@@ -17,7 +17,7 @@ import { NgModule } from '@angular/core';
     MatToolbarModule, MatIconModule, MatMenuModule,
     MatSidenavModule, MatListModule, MatTableModule,
     MatPaginatorModule, MatSortModule, MatDialogModule,
-    MatProgressBarModule
+    MatProgressBarModule, MatProgressSpinnerModule
   ],
   declarations: [
   ]
