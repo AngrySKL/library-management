@@ -1,9 +1,9 @@
 <mat-card>
   <section class="file-section">
     <span class="file-info">{{file.name}} -- {{file.size | bytes}}</span>
-    <!-- <mat-progress-bar [value]="progressPercentage"></mat-progress-bar> -->
-    <!-- <a [ngClass]="{'disabled' : isUploading}"><mat-icon class="action" (click)="upload()">file_upload</mat-icon></a> -->
-    <mat-icon class="action right" (click)="remove()">cancel</mat-icon>
+    <div>
+        <a mat-icon-button><mat-icon>visibility</mat-icon></a>
+        <a mat-icon-button (click)="remove()"><mat-icon>cancel</mat-icon></a>
+    </div>
   </section>
-  <!-- <span class="file-info">{{progressPercentage}}%</span><span> {{loaded | bytes}} of {{total | bytes}}</span> -->
 </mat-card>
