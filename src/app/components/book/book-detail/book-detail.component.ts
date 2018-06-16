@@ -3,10 +3,9 @@ import { BookService } from './../../../shared/services/book/book.service';
 import { Component, OnInit, OnDestroy, Inject, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { HttpEventType } from '@angular/common/http';
 
 import 'rxjs/add/operator/takeWhile';
-import { MaterialFileUploadQueueComponent } from '../../fileupload/material-file-upload-queue/material-file-upload-queue.component';
-import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-book-detail',
@@ -18,9 +17,12 @@ export class BookDetailComponent implements OnInit, OnDestroy {
   action: string;
   formModel: FormGroup;
   bookId: number;
+  cover: File;
+  coverName: string;
+  coverUrl: string;
+  coverSize: number;
 
   @ViewChild('file') file: ElementRef;
-  @ViewChild('fileUploadQueue') uploadQueue: MaterialFileUploadQueueComponent;
 
   constructor(private routeInfo: ActivatedRoute,
               private router: Router,
@@ -38,6 +40,11 @@ export class BookDetailComponent implements OnInit, OnDestroy {
           publisher: book.publisher,
           ISBN: book.ISBN
         });
+        if (book.coverUrl) {
+          this.coverName = book.coverName;
+          this.coverSize = book.coverSize;
+          this.coverUrl = book.coverUrl;
+        }
       });
       this.action = 'EDITING';
     } else {
@@ -62,6 +69,26 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     this.file.nativeElement.click();
   }
 
+  onFileInputChange(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      this.cover = event.target.files[0];
+      this.coverName = this.cover.name;
+      this.coverSize = this.cover.size;
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.coverUrl = e.target.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+  removeFile() {
+    this.cover = null;
+    this.coverName = null;
+    this.coverSize = null;
+    this.coverUrl = null;
+  }
+
   save() {
     const title = this.formModel.get('title').value;
     const author = this.formModel.get('author').value;
@@ -69,18 +96,18 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     const ISBN = this.formModel.get('ISBN').value;
 
     if (this.bookId) {
-      this.bookSvc.saveBook(this.bookId, title, author, publisher, ISBN, this.uploadQueue.files[0]).subscribe(res => {
+      this.bookSvc.saveBook(this.bookId, title, author, publisher, ISBN, this.cover).subscribe(res => {
           if (res.type === HttpEventType.Response) {
-            if (res.code === 200) {
+            if (res.body.code === 200) {
               const dialogRef = this.dialog.open(MessageDialog, {
                 height: '180px',
-                data: { message: res.message }
+                data: { message: res.body.message }
               });
           }
         }
       });
     } else {
-      this.bookSvc.addBook(title, author, publisher, ISBN, this.uploadQueue.files[0]).subscribe(res => {
+      this.bookSvc.addBook(title, author, publisher, ISBN, this.cover).subscribe(res => {
         if (res.type === HttpEventType.Response) {
           if (res.body.code === 200) {
             const dialogRef = this.dialog.open(MessageDialog, {

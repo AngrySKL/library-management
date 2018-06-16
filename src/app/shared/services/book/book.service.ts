@@ -19,12 +19,13 @@ export class BookService {
 
   getBook(id: number): Observable<Book> {
     return this.http.get<Book>(`/api/books/detail/${id}`).map(res => {
-      return new Book(res.id, res.title, res.author, res.publisher, res.ISBN, res.coverUrl);
+      return new Book(res.id, res.title, res.author, res.publisher, res.ISBN, res.coverName, res.coverSize, res.coverUrl);
     });
   }
 
   saveBook(id: number, title: string, author: string, publisher: string, ISBN: string, cover: File): Observable<any> {
     const formData = new FormData();
+    formData.set('id', id);
     formData.set('title', title);
     formData.set('author', author);
     formData.set('publisher', publisher);
@@ -72,6 +73,8 @@ export class Book {
     public author: string,
     public publisher: string,
     public ISBN: string,
+    public coverName: string,
+    public coverSize: number,
     public coverUrl: string) {}
 }
 

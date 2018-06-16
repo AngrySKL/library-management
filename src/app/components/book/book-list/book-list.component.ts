@@ -102,7 +102,7 @@ export class BookListComponent implements OnInit, OnDestroy, AfterViewInit {
     this.dataSource.filter = fliterValue;
   }
 
-  showPreview(bookName, bookCoverUrl) {
+  showPreview(bookName: string, bookCoverUrl: string) {
     const dialogRef = this.filePreviewSvc.open({ image: { name: bookName, url: bookCoverUrl } });
   }
 }

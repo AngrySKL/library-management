@@ -1,8 +1,8 @@
 <mat-card>
   <section class="file-section">
-    <span class="file-info">{{file.name}} -- {{file.size | bytes}}</span>
+    <span class="file-info">{{fileName}} -- {{fileSize | bytes}}</span>
     <div>
-        <a mat-icon-button><mat-icon>visibility</mat-icon></a>
+        <a mat-icon-button (click)="showPreview()"><mat-icon>visibility</mat-icon></a>
         <a mat-icon-button (click)="remove()"><mat-icon>cancel</mat-icon></a>
     </div>
   </section>

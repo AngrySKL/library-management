@@ -14,14 +14,12 @@
           <input matInput placeholder="ISBN" formControlName="ISBN" required>
       </mat-form-field>
 
-      <input type="file" #file style="display: none" [fileUploadInputFor]="fileUploadQueue" />
+      <input type="file" #file style="display: none" (change)="onFileInputChange($event)" />
       <button mat-raised-button type="button" class="upload-button" color="primary" (click)="openFileDialog()">Upload</button>
 
       <div class="upload-container">
-        <app-material-file-upload-queue #fileUploadQueue [fileAlias]="'file'" [httpUrl]="'/api/books/upload'">
-            <app-material-file-upload [file]="file" [id]="bookId" *ngFor="let file of fileUploadQueue.files; let i = index">
-            </app-material-file-upload>
-        </app-material-file-upload-queue>
+        <app-material-file-upload *ngIf="coverName" [fileName]="coverName" [fileSize]="coverSize" [previewUrl]="coverUrl" (removeEvent)="removeFile()">
+        </app-material-file-upload>
       </div>
 
       <button mat-raised-button type="submit" class="save-button">Save</button>

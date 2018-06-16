@@ -1,3 +1,4 @@
+import { FilePreviewOverlayService } from './../../../shared/services/filepreview/file-preview-overlay.service';
 import { MaterialFileUploadQueueComponent } from './../material-file-upload-queue/material-file-upload-queue.component';
 import { Component, OnDestroy, Inject, forwardRef, Input, Output, EventEmitter } from '@angular/core';
 import { HttpHeaders, HttpParams, HttpClient, HttpEventType } from '@angular/common/http';
@@ -30,6 +31,15 @@ export class MaterialFileUploadComponent implements OnDestroy {
   fileAlias = 'file';
 
   @Input()
+  previewUrl: string;
+
+  @Input()
+  fileName: string;
+
+  @Input()
+  fileSize: string;
+
+  @Input()
   get file(): File {
     return this._file;
   }
@@ -50,13 +60,7 @@ export class MaterialFileUploadComponent implements OnDestroy {
   @Output() uploadEvent = new EventEmitter();
 
   constructor(private http: HttpClient,
-    @Inject(forwardRef(() => MaterialFileUploadQueueComponent)) matFileUploadQueue: MaterialFileUploadQueueComponent) {
-      if (matFileUploadQueue) {
-        this.httpUrl = matFileUploadQueue.httpUrl || this.httpUrl;
-        this.httpRequestHeaders = matFileUploadQueue.httpRequestHeaders || this.httpRequestHeaders;
-        this.httpRequestParams = matFileUploadQueue.httpRequestParams || this.httpRequestParams;
-        this.fileAlias = matFileUploadQueue.fileAlias || this.fileAlias;
-      }
+    private filePreviewSvc: FilePreviewOverlayService) {
     }
 
   ngOnDestroy() {
@@ -65,6 +69,10 @@ export class MaterialFileUploadComponent implements OnDestroy {
   public remove(): void {
     if (this._fileUploadSubscription) { this._fileUploadSubscription.unsubscribe(); }
     this.removeEvent.emit(this);
+  }
+
+  public showPreview(): void {
+    const dialogRef = this.filePreviewSvc.open({ image: { name: this.fileName, url: this.previewUrl } });
   }
 
   public upload(): void {
