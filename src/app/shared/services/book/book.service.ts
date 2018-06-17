@@ -25,7 +25,7 @@ export class BookService {
 
   saveBook(id: number, title: string, author: string, publisher: string, ISBN: string, cover: File): Observable<any> {
     const formData = new FormData();
-    formData.set('id', id);
+    formData.set('id', String(id));
     formData.set('title', title);
     formData.set('author', author);
     formData.set('publisher', publisher);
