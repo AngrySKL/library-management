@@ -6,10 +6,16 @@
     <form class="login-form" (submit)="login()" [formGroup]="formModel">
       <mat-form-field>
         <input matInput placeholder="username" formControlName="username">
+        <button mat-button *ngIf="formModel.get('username').value" matSuffix mat-icon-button aria-label="Clear" (click)="formModel.get('username').setValue('')">
+          <mat-icon>close</mat-icon>
+        </button>
         <mat-error *ngIf="formModel.hasError('required', 'username')">Please enter your username.</mat-error>
       </mat-form-field>
       <mat-form-field>
           <input matInput type="password" placeholder="password" formControlName="password">
+          <button mat-button *ngIf="formModel.get('password').value" matSuffix mat-icon-button aria-label="Clear" (click)="formModel.get('password').setValue('')">
+            <mat-icon>close</mat-icon>
+          </button>
           <mat-error *ngIf="formModel.hasError('required', 'password')">Please enter your password.</mat-error>
       </mat-form-field>
 
