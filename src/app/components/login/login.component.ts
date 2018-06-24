@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from '../../shared/services/login/login.service';
 import { Router } from '@angular/router';
 
@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit {
               private loginSvr: LoginService,
               private router: Router) {
     this.formModel = fb.group({
-      username: [''],
-      password: ['']
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
@@ -24,6 +24,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    if (this.formModel.invalid) {
+      return;
+    }
+
     const username = this.formModel.get('username').value;
     const password = this.formModel.get('password').value;
 
